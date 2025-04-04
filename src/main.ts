@@ -13,9 +13,9 @@ async function bootstrap() {
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Fiscalapi Nest Samples')
-    .setDescription('Integración con Fiscalapi NestJs')
+    .setDescription('Integración Fiscalapi con NestJs (nodejs) para la generación de facturas electrónicas CFDI')
     .setVersion('1.0')
-    .addTag('todos')
+    //.addTag('todos')
     .addTag('productos')
     .addTag('facturas')
     .build();
@@ -31,9 +31,8 @@ async function bootstrap() {
   // Obtener la URL base del servidor
   const serverUrl = await app.getUrl();
   
-  // Imprimir información en la consola
   console.log();
-  console.warn(`Running on: ${serverUrl}/api-docs`);
+  console.warn(`Running on: http://localhost:${port}/api-docs`);
   console.log();
 
 }
