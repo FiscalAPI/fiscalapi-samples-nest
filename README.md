@@ -2,7 +2,7 @@
 
 [![NestJS](https://img.shields.io/badge/nestjs-10.x-red.svg)](https://nestjs.com/)
 [![TypeScript](https://img.shields.io/badge/typescript-5.x-blue.svg)](https://www.typescriptlang.org/)
-[![FiscalAPI](https://img.shields.io/npm/v/fiscalapi.svg?style=flat-square&label=FiscalAPI&color=green)](https://www.npmjs.com/package/fiscalapi)
+[![FiscalAPI](https://img.shields.io/npm/v/fiscalapi.svg?style=flat-square&label=FiscalAPI&color=blue)](https://www.npmjs.com/package/fiscalapi)
 
 Ejemplos de integración con FiscalAPI para la generación de CFDI (Comprobantes Fiscales Digitales por Internet) utilizando NestJS y TypeScript.
 
