@@ -33,8 +33,8 @@ import { FiscalapiClient, Product } from 'fiscalapi';
 import { createFiscalApiClient } from '../services/fiscalapi.service.factory';
 
 
-@ApiTags('products')
-@Controller('products')
+@ApiTags('productos')
+@Controller('productos')
 export class ProductsController {
   private readonly fiscalApi: FiscalapiClient;
 

@@ -17,7 +17,8 @@ async function bootstrap() {
     .setDescription('Integración con Fiscalapi NestJs')
     .setVersion('1.0')
     .addTag('todos')
-    .addTag('products')
+    .addTag('productos')
+    .addTag('facturas')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
