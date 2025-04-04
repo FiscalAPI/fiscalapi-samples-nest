@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
@@ -12,7 +11,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
 
-  const config = new DocumentBuilder()
+  const swaggerConfig = new DocumentBuilder()
     .setTitle('Fiscalapi Nest Samples')
     .setDescription('Integración con Fiscalapi NestJs')
     .setVersion('1.0')
@@ -20,9 +19,22 @@ async function bootstrap() {
     .addTag('productos')
     .addTag('facturas')
     .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api-docs', app, document);
 
-  await app.listen(3000);
+  // Obtener el puerto del entorno o usar 3000 como valor predeterminado
+  const port = process.env.PORT || 3000;
+  
+  // Iniciar el servidor y esperar a que esté listo
+  await app.listen(port);
+  
+  // Obtener la URL base del servidor
+  const serverUrl = await app.getUrl();
+  
+  // Imprimir información en la consola
+  console.log();
+  console.warn(`Running on: ${serverUrl}/api-docs`);
+  console.log();
+
 }
 bootstrap();
