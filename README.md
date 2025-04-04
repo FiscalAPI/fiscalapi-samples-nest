@@ -93,29 +93,14 @@ FISCALAPI_API_URL=https://api.fiscalapi.com
 
 ### Crear una Factura con IVA 16%
 
-```bash
-curl -X POST http://localhost:3000/api/invoices/create/iva-16
-```
-
 ### Crear una Nota de Crédito
 
-```bash
-curl -X POST http://localhost:3000/api/invoices/create/credit-note/by-values
-```
-
 ### Generar un PDF de Factura
-
-```bash
-curl -X GET http://localhost:3000/api/invoices/pdf/123456
-```
 
 ## 📖 Documentación API
 
 La documentación swagger de la ejemplo está disponible en:
 
-```
-http://localhost:3000/api-docs
-```
 
 Utiliza Swagger UI para probar todos los endpoints disponibles.
 
