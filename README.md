@@ -1,98 +1,144 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# FiscalAPI Samples NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+[![NestJS](https://img.shields.io/badge/nestjs-10.x-red.svg)](https://nestjs.com/)
+[![TypeScript](https://img.shields.io/badge/typescript-5.x-blue.svg)](https://www.typescriptlang.org/)
+[![FiscalAPI](https://img.shields.io/npm/v/fiscalapi.svg?style=flat-square&label=FiscalAPI&color=blue)](https://www.npmjs.com/package/fiscalapi)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Ejemplos de integración con FiscalAPI para la generación de CFDI (Comprobantes Fiscales Digitales por Internet) utilizando NestJS y TypeScript.
 
-## Description
+## 📋 Descripción
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este proyecto proporciona ejemplos prácticos de cómo integrar FiscalAPI en una aplicación NestJS para generar facturas electrónicas (CFDI) cumpliendo con los requisitos del SAT (Servicio de Administración Tributaria) en México.
 
-## Project setup
+## ✨ Características
+
+- Gestión completa de facturas CFDI 4.0
+- Ejemplos de diferentes tipos de facturación (IVA 16%, IVA exento, tasa cero)
+- Creación de complementos de pago
+- Notas de crédito
+- Manejo de diferentes monedas (MXN, USD, EUR)
+- Cancelación de facturas
+- Generación de PDF y XML
+- Envío por correo electrónico
+- Documentación completa con Swagger
+
+## 🚀 Instalación
 
 ```bash
-$ npm install
+# Clonar el repositorio
+git clone https://github.com/FiscalAPI/fiscalapi-samples-nest
+
+# Entrar al directorio
+cd fiscalapi-samples-nest
+
+# Instalar dependencias
+npm install
+
+# Copiar y configurar variables de entorno
+cp .env.example .env
+# (Editar .env con tus credenciales de FiscalAPI) https://docs.fiscalapi.com/credentials-info
+
+# Iniciar la aplicación en modo desarrollo
+npm run start:dev
 ```
 
-## Compile and run the project
+La documentación swagger de la ejemplo está disponible en:
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+http://localhost:3000/api-docs
 ```
 
-## Run tests
+## ⚙️ Configuración
 
-```bash
-# unit tests
-$ npm run test
+### Variables de Entorno
 
-# e2e tests
-$ npm run test:e2e
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
 
-# test coverage
-$ npm run test:cov
+```
+PORT=3000
+FISCALAPI_API_KEY=tu_api_key
+FISCALAPI_TENANT=tu_tenant
+FISCALAPI_API_URL=https://api.fiscalapi.com
 ```
 
-## Deployment
+## 📚 Estructura del Proyecto
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
+```
+├── src
+│   ├── main.ts                    # Punto de entrada de la aplicación
+│   ├── app.module.ts              # Módulo principal de la aplicación
+│   ├── config                     # Configuraciones
+│   │   ├── app.config.ts          # Configuración principal
+│   │   ├── swagger.config.ts      # Configuración de Swagger
+│   │   └── validation.config.ts   # Configuración de validación
+│   ├── modules                    # Módulos de la aplicación
+│   │   ├── invoice                # Módulo de facturación
+│   │   │   ├── invoice.module.ts  # Definición del módulo
+│   │   │   ├── invoice.controller.ts  # Controlador de facturas
+│   │   │   ├── invoice.service.ts # Servicio de facturas
+│   │   │   └── dto                # Objetos de transferencia de datos
+│   │   ├── product                # Módulo de productos
+│   │   └── fiscal                 # Módulo fiscal
+│   ├── shared                     # Código compartido
+│   │   ├── decorators             # Decoradores personalizados
+│   │   ├── filters                # Filtros de excepción
+│   │   ├── guards                 # Guards de autenticación/autorización
+│   │   └── interceptors           # Interceptores
+│   ├── services                   # Servicios globales
+│   │   └── fiscalapi.service.ts   # Servicio de FiscalAPI
+│   └── interfaces                 # Interfaces y tipos
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 🔍 Ejemplos de Uso
 
-## Resources
+### Crear una Factura con IVA 16%
 
-Check out a few resources that may come in handy when working with NestJS:
+### Crear una Nota de Crédito
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Generar un PDF de Factura
 
-## Support
+## 📖 Documentación API
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+La documentación swagger de la ejemplo está disponible en:
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Utiliza Swagger UI para probar todos los endpoints disponibles.
 
-## License
+## 🔧 Tecnologías Utilizadas
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- **NestJS**: Framework moderno para construir aplicaciones eficientes y escalables del lado del servidor con Node.js
+- **TypeScript**: Superset tipado de JavaScript
+- **FiscalAPI SDK**: SDK para interactuar con FiscalAPI
+- **Swagger**: Documentación de API con @nestjs/swagger
+- **Class Validator**: Validación de DTOs
+- **Class Transformer**: Transformación de objetos
+- **Luxon**: Manejo de fechas y horas
+- **UUID**: Generación de identificadores únicos
+- **dotenv**: Gestión de variables de entorno
+
+## 🤝 Contribuir
+1. Haz un fork del repositorio.  
+2. Crea una rama para tu feature: `git checkout -b feature/AmazingFeature`.  
+3. Realiza commits de tus cambios: `git commit -m 'Add some AmazingFeature'`.  
+4. Sube tu rama: `git push origin feature/AmazingFeature`.  
+5. Abre un Pull Request en GitHub.
+
+## 🐛 Reportar Problemas
+1. Asegúrate de usar la última versión del SDK.  
+2. Verifica si el problema ya fue reportado.  
+3. Proporciona un ejemplo mínimo reproducible.  
+4. Incluye los mensajes de error completos.
+
+## 📄 Licencia
+Este proyecto está licenciado bajo la Licencia **MPL-2.0**. Consulta el archivo [LICENSE](LICENSE.txt) para más detalles.
+
+## 🔗 Enlaces Útiles
+
+- [Documentación Oficial](https://docs.fiscalapi.com)  
+- [Pagina de FiscalAPI](https://fiscalapi.com)
+- [Ejemplos NestJS](https://github.com/FiscalAPI/fiscalapi-samples-nest)
+- [Ejemplos Express](https://github.com/FiscalAPI/fiscalapi-samples-express)
+- [Más Ejemplos en NodeJs](https://github.com/FiscalAPI/fiscalapi-node/blob/main/examples/all-samples.ts)  
+
+---
+Desarrollado con ❤️ por [Fiscalapi](https://www.fiscalapi.com)
