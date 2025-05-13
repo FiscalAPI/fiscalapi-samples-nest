@@ -166,6 +166,147 @@ export class InvoicesController {
         }
     }
 
+    @Post('factura-global-por-valores')
+    @ApiOperation({ summary: 'Crear factura global por valores' })
+    @ApiResponse({ status: 200, description: 'Factura global creada correctamente' })
+    @ApiResponse({ status: 400, description: 'Error al crear la factura global' })
+    async crearFacturaGlobalPorValores() {
+        try {
+            const globalInvoiceByValues: Invoice = {
+                versionCode: "4.0",
+                series: "F",
+                date: this.currentDate,
+                paymentFormCode: "01",
+                paymentMethodCode: "PUE",
+                currencyCode: "MXN",
+                typeCode: "I",
+                expeditionZipCode: "01160",
+                exchangeRate: 1,
+                exportCode: "01",
+                globalInformation: {
+                    periodicityCode: "01",
+                    monthCode: "05",
+                    year: 2025
+                },
+                issuer: {
+                    tin: "FUNK671228PH6",
+                    legalName: "KARLA FUENTE NOLASCO",
+                    taxRegimeCode: "621",
+                    taxCredentials: [
+                        {
+                            base64File: this.base64Cert,
+                            fileType: 0,  // CertificateCsd
+                            password: this.password
+                        },
+                        {
+                            base64File: this.base64Key,
+                            fileType: 1,  // PrivateKeyCsd
+                            password: this.password
+                        }
+                    ]
+                },
+                recipient: {
+                    tin: "XAXX010101000",
+                    legalName: "PUBLICO EN GENERAL",
+                    zipCode: "01160",
+                    taxRegimeCode: "616",
+                    cfdiUseCode: "S01",
+                    email: "someone@somewhere.com"
+                },
+                items: [
+                    {
+                        itemCode: "01010101",
+                        quantity: 1,
+                        unitOfMeasurementCode: "ACT",
+                        description: "Venta",
+                        unitPrice: 1230.00,
+                        taxObjectCode: "02",
+                        itemSku: "venta0001",
+                        itemTaxes: [
+                            {
+                                taxCode: "002",  // IVA
+                                taxTypeCode: "Tasa",
+                                taxRate: "0.160000",  // 16%
+                                taxFlagCode: "T"  // Traslado
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            const apiResponse = await this.fiscalApi.invoices.create(globalInvoiceByValues);
+            
+            if (apiResponse.succeeded) {
+                return apiResponse;
+            } else {
+                throw new BadRequestException(apiResponse);
+            }
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
+
+    @Post('factura-global-por-referencias')
+    @ApiOperation({ summary: 'Crear factura global por referencias' })
+    @ApiResponse({ status: 200, description: 'Factura global creada correctamente' })
+    @ApiResponse({ status: 400, description: 'Error al crear la factura global' })
+    async crearFacturaGlobalPorReferencias() {
+        try {
+            const globalInvoiceByReferences: Invoice = {
+                versionCode: "4.0",
+                series: "F",
+                exportCode: "01",
+                date: this.currentDate,
+                paymentFormCode: "01",
+                paymentMethodCode: "PUE",
+                currencyCode: "MXN",
+                typeCode: "I",
+                expeditionZipCode: "01160",
+                exchangeRate: 1,
+                globalInformation: {
+                    periodicityCode: "01",
+                    monthCode: "05",
+                    year: 2025
+                },
+                issuer: {
+                    id: "78d380fd-1b69-4e3c-8bc0-4f57737f7d5f"
+                },
+                recipient: {
+                    id: "4e7ba2d7-2302-42f1-9fe4-6b75069f0fc9"
+                },
+                items: [
+                    {
+                        itemCode: "01010101",
+                        quantity: 1,
+                        unitOfMeasurementCode: "ACT",
+                        description: "Venta",
+                        unitPrice: 1230.00,
+                        taxObjectCode: "02",
+                        itemSku: "venta0001",
+                        itemTaxes: [
+                            {
+                                taxCode: "002",  // IVA
+                                taxTypeCode: "Tasa",
+                                taxRate: "0.160000",  // 16%
+                                taxFlagCode: "T"  // Traslado
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            const apiResponse = await this.fiscalApi.invoices.create(globalInvoiceByReferences);
+            
+            if (apiResponse.succeeded) {
+                return apiResponse;
+            } else {
+                throw new BadRequestException(apiResponse);
+            }
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
+
     @Post('con-iva-exento')
     @ApiOperation({ summary: 'Crear factura con IVA exento' })
     @ApiResponse({ status: 200, description: 'Factura creada correctamente' })
