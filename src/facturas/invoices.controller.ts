@@ -1131,10 +1131,6 @@ export class InvoicesController {
         }
     }
 
-    @Post('complemento-nomina-referencias')
-    @ApiOperation({ summary: 'Crear complemento de nómina por referencias' })
-    @ApiResponse({ status: 200, description: 'Complemento de nómina creado correctamente' })
-    @ApiResponse({ status: 400, description: 'Error al crear el complemento de nómina' })
     @Post('complemento-nomina-por-referencias')
     @ApiOperation({ summary: 'Crear factura con complemento de nómina por referencias' })
     @ApiResponse({ status: 200, description: 'Factura con complemento de nómina creada correctamente' })
